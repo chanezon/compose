@@ -21,6 +21,22 @@ reproduced anywhere.
 they can be run together in an isolated environment:
 3. Lastly, run `docker-compose up` and Compose will start and run your entire app.
 
+A `docker-compose.yml` looks like this:
+
+```yaml
+web:
+  build: .
+  command: python app.py
+  ports:
+   - "5000:5000"
+  volumes:
+   - .:/code
+  links:
+   - redis
+redis:
+  image: redis
+```
+
 Compose has commands for managing the whole lifecycle of your application:
 
  * Start, stop and rebuild services
